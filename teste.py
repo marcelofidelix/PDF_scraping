@@ -1,12 +1,21 @@
 import PyPDF2
-pdfFileObj = open('a.pdf', 'rb')
-pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+from pathlib import Path
+import os
 
-texto = ''
+dirpath = os.getcwd()
 
-for i in range(pdfReader.numPages):
-	pageObj = pdfReader.getPage(i)
-	texto += pageObj.extractText()
+pathlist = Path(dirpath).glob('**/*.pdf')
+for path in pathlist:
+    #path não é uma string!
+    path_in_str = str(path)
+    print(path_in_str)
+    pdfFileObj = open(path_in_str, 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 
-print(texto)
+    texto = ''
 
+    for i in range(pdfReader.numPages):
+        pageObj = pdfReader.getPage(i)
+        texto += pageObj.extractText()
+
+    print(texto)
