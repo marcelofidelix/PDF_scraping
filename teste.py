@@ -21,5 +21,3 @@ for path in pathlist:
     path_txt = path_in_str.replace('.pdf', '.txt')
     with open(path_txt, 'w') as f:  
         f.write(texto) 
-
-    print(texto)
