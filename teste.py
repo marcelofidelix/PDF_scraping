@@ -17,5 +17,9 @@ for path in pathlist:
     for i in range(pdfReader.numPages):
         pageObj = pdfReader.getPage(i)
         texto += pageObj.extractText()
+    
+    path_txt = path_in_str.replace('.pdf', '.txt')
+    with open(path_txt, 'w') as f:  
+        f.write(texto) 
 
     print(texto)
